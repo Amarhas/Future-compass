@@ -2,6 +2,20 @@
 
 All notable Future Compass checkpoints are tracked here.
 
+## v0.5.1 — Profile and Schema Foundation
+
+In review.
+
+- Added local child profiles.
+- Added profile selector and add-profile flow.
+- Added `schemaVersion: 1` data model.
+- Added profile-specific progress storage.
+- Added badge evidence log structure.
+- Added machine-readable backup export.
+- Added backup import validation for current and legacy progress formats.
+- Added migration path from older local progress storage.
+- Added `docs/data-schema.md`.
+
 ## v0.5 — Module Foundation
 
 Merged: 2026-05-03
