@@ -5,14 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Future Compass</title>
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="modules.css" />
 </head>
 <body>
   <header class="hero">
     <div>
-      <div class="eyebrow">Future Compass v0.4.2</div>
+      <div class="eyebrow">Future Compass v0.5 module foundation</div>
       <h1>Future Compass ✨</h1>
-      <p>Try one small challenge, collect clues, and grow badges through practice — not pressure.</p>
-      <div class="chips"><span>🎯 One clear next step</span><span>🏅 Badge paths</span><span>📱 Mobile-first</span><span>🔒 Local-only</span></div>
+      <p>Try one small challenge, pick how you want to start, and grow badges through practice — not pressure.</p>
+      <div class="chips"><span>🎯 One clear next step</span><span>🧭 Start Here modules</span><span>🏅 Badge paths</span><span>📱 Mobile-first</span></div>
     </div>
     <div class="actions">
       <label for="theme">Theme</label>
@@ -29,6 +30,20 @@
       <div class="top"><div><div id="week" class="eyebrow">Week 1 of 12</div><h2 id="title"></h2></div><div id="emoji" class="emoji">🧱</div></div>
       <div id="meta" class="pillRow"></div>
       <p id="text" class="activityText"></p>
+
+      <section class="moduleStart" aria-label="Start Here module choices">
+        <div class="moduleHead"><div><div class="eyebrow">Start Here</div><h3>How do you want to begin?</h3><p class="small">Pick the entry point that helps today. This is not a learning-style label.</p></div></div>
+        <div class="moduleChoices" role="tablist" aria-label="Module entry choices">
+          <button class="moduleBtn active" data-mode="showMe" type="button">👀 Show Me</button>
+          <button class="moduleBtn" data-mode="tellMe" type="button">🎧 Tell Me</button>
+          <button class="moduleBtn" data-mode="tryIt" type="button">👐 Let Me Try</button>
+          <button class="moduleBtn" data-mode="talkMeThrough" type="button">💬 Talk Me Through</button>
+          <button class="moduleBtn" data-mode="surpriseMe" type="button">🎲 Surprise Me</button>
+        </div>
+        <div id="moduleContent" class="moduleContent"></div>
+      </section>
+
+      <h3 class="sectionTitle">Challenge steps</h3>
       <ol id="steps" class="steps"></ol>
       <div class="note">Tiny goal: try it for 15–25 minutes. You are collecting clues, not trying to be perfect.</div>
       <section class="reflection">
@@ -60,5 +75,6 @@
   <div id="modal" class="modalBg" hidden><section class="modal"><h2>🔐 Grown-up Gate</h2><p class="small">This separates child activities from adult interpretation. It is not real authentication.</p><p class="small"><strong>Default:</strong> grownup / compass</p><label for="user">Username</label><input id="user" value="grownup" /><label for="pass">Password</label><input id="pass" type="password" placeholder="compass" /><button id="login" class="primary wide">Open Grown-up View</button><button id="cancel" class="soft wide">Cancel</button><div id="err" class="error" hidden>Try username <strong>grownup</strong> and password <strong>compass</strong>.</div></section></div>
 
   <script src="app.js"></script>
+  <script src="modules.js"></script>
 </body>
 </html>
