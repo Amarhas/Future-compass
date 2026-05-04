@@ -49,7 +49,7 @@ function getMissionSteps(data) {
       key: 'why',
       eyebrow: 'Step 2 of 7',
       title: '🌟 Why this matters',
-      body: `<p>${esc(data.whyThisMatters)}</p><p class="small">This is the “why should I care?” card.</p>`
+      body: `<p>${esc(data.whyThisMatters)}</p>`
     },
     {
       key: 'skills',
@@ -61,19 +61,19 @@ function getMissionSteps(data) {
       key: 'start',
       eyebrow: 'Step 4 of 7',
       title: '🧭 Before you start',
-      body: `<p>${esc(data.beforeYouStart)}</p><p class="small">Pick an idea first, then test it.</p>`
+      body: `<p>${esc(data.beforeYouStart)}</p><p class="missionHint">Starter nudge: Pick one guess before you build. You are not trying to be right. You are making a prediction to test.</p>`
     },
     {
       key: 'try',
       eyebrow: 'Step 5 of 7',
       title: '👐 Try it',
-      body: `<p>Build, test, change one thing, and test again.</p><button class="soft wide missionJump" type="button" data-jump-target="steps">Show challenge steps</button>`
+      body: `<p>Build, test, change one thing, and test again.</p><p class="missionHint">Starter nudge: Build a quick first version. A wobbly tower is useful because it gives you clues about what to change.</p><button class="soft wide missionJump" type="button" data-jump-target="steps">Show challenge steps</button>`
     },
     {
       key: 'notice',
       eyebrow: 'Step 6 of 7',
       title: '👀 Notice the clues',
-      body: `<p>${esc(data.whatToNotice)}</p><div class="missionProof"><strong>Proof you made:</strong><br>${esc(data.proofYouMade)}</div><div class="missionProof"><strong>If you get stuck:</strong><br>${esc(data.stuckHelp)}</div>`
+      body: `<p>${esc(data.whatToNotice)}</p><p class="missionHint">Starter nudge: Look for where the tower failed first. Did the bottom slide, the middle bend, or the top tip over?</p><div class="missionProof"><strong>Proof you made:</strong><br>${esc(data.proofYouMade)}</div><div class="missionProof"><strong>If you get stuck:</strong><br>${esc(data.stuckHelp)}</div>`
     },
     {
       key: 'levelUp',

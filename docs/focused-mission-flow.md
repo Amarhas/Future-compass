@@ -52,6 +52,30 @@ The child can move through the flow using:
 
 Swipe-only navigation should not be required because it may not be discoverable or accessible enough.
 
+## Desktop and mobile control order
+
+Desktop keeps the standard trailing-primary order:
+
+```text
+Back → Skip to Try It → Next
+```
+
+Mobile stacks the primary action first:
+
+```text
+Next → Back → Skip to Try It
+```
+
+This keeps the main action visible above the bottom navigation on phone screens.
+
+## Copy polish rule
+
+Child-facing cards should not expose internal design labels such as “why should I care?” card. Internal design language can be useful in planning documents, but the app should speak directly to the child.
+
+## Starter nudge rule
+
+Cards that ask a child to begin work should include a small starter nudge when the task could otherwise feel too open-ended. The nudge should help the child start without turning the activity into a full tutorial.
+
 ## Adult view
 
 The grown-up research and coaching notes remain in the Adult view. They should not crowd the child-facing mission flow.
@@ -66,10 +90,14 @@ After this PR is merged and GitHub Pages redeploys:
 4. Tap Next through all seven cards.
 5. Tap Back and confirm it returns to the prior card.
 6. Tap Skip to Try It and confirm it moves to the Try It card.
-7. Confirm the Try It and Reflect jump buttons move to the right part of the page.
-8. Confirm the activity still feels colorful and playful.
-9. Confirm other activities still work without the focused flow.
-10. Confirm Adult view still shows the grown-up coaching note.
+7. Confirm mobile button order is Next, Back, Skip.
+8. Confirm desktop button order is Back, Skip, Next.
+9. Confirm Step 2 no longer says “why should I care?” card.
+10. Confirm Steps 4, 5, and 6 include starter nudges.
+11. Confirm the Try It and Reflect jump buttons move to the right part of the page.
+12. Confirm the activity still feels colorful and playful.
+13. Confirm other activities still work without the focused flow.
+14. Confirm Adult view still shows the grown-up coaching note.
 
 ## Phase line
 
