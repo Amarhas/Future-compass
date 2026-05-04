@@ -28,10 +28,81 @@ const translationLayer = {
   }
 };
 
+let missionStepIndex = 0;
+
 function getTranslationForCurrentActivity() {
   const activity = currentActivity ? currentActivity() : activities[week];
   if (!activity) return null;
   return translationLayer[activity.id] || null;
+}
+
+function getMissionSteps(data) {
+  if (!data) return [];
+  return [
+    {
+      key: 'mission',
+      eyebrow: 'Step 1 of 7',
+      title: '🎯 Mission',
+      body: `<p>${esc(data.mission)}</p><p class="missionHint">Tiny goal: try it for 15–25 minutes. You are collecting clues, not trying to be perfect.</p>`
+    },
+    {
+      key: 'why',
+      eyebrow: 'Step 2 of 7',
+      title: '🌟 Why this matters',
+      body: `<p>${esc(data.whyThisMatters)}</p><p class="small">This is the “why should I care?” card.</p>`
+    },
+    {
+      key: 'skills',
+      eyebrow: 'Step 3 of 7',
+      title: '🏅 What you are practicing',
+      body: `<div class="skillChips">${data.skillsPracticed.map(skill => `<span class="skillChip">${skill.emoji} ${esc(skill.badge)} · ${esc(skill.behavior)}</span>`).join('')}</div><p class="missionHint">These are clues, not labels.</p>`
+    },
+    {
+      key: 'start',
+      eyebrow: 'Step 4 of 7',
+      title: '🧭 Before you start',
+      body: `<p>${esc(data.beforeYouStart)}</p><p class="small">Pick an idea first, then test it.</p>`
+    },
+    {
+      key: 'try',
+      eyebrow: 'Step 5 of 7',
+      title: '👐 Try it',
+      body: `<p>Build, test, change one thing, and test again.</p><button class="soft wide missionJump" type="button" data-jump-target="steps">Show challenge steps</button>`
+    },
+    {
+      key: 'notice',
+      eyebrow: 'Step 6 of 7',
+      title: '👀 Notice the clues',
+      body: `<p>${esc(data.whatToNotice)}</p><div class="missionProof"><strong>Proof you made:</strong><br>${esc(data.proofYouMade)}</div><div class="missionProof"><strong>If you get stuck:</strong><br>${esc(data.stuckHelp)}</div>`
+    },
+    {
+      key: 'levelUp',
+      eyebrow: 'Step 7 of 7',
+      title: '🚀 Level-up or reflect',
+      body: `<p>${esc(data.levelUp)}</p><p class="missionHint">When you are done, answer the reflection questions and save your clue.</p><button class="primary wide missionJump" type="button" data-jump-target="reflection">Go to reflection</button>`
+    }
+  ];
+}
+
+function setMissionStep(index) {
+  const data = getTranslationForCurrentActivity();
+  const steps = getMissionSteps(data);
+  missionStepIndex = Math.max(0, Math.min(index, steps.length - 1));
+  renderTranslationLayer();
+}
+
+function jumpToMissionTarget(target) {
+  const map = {
+    steps: document.getElementById('steps'),
+    reflection: document.querySelector('.reflection'),
+    start: document.querySelector('.moduleStart')
+  };
+  const el = map[target];
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function renderMissionDots(steps) {
+  return steps.map((step, index) => `<button class="missionDot ${index === missionStepIndex ? 'active' : ''}" type="button" aria-label="Go to ${esc(step.title.replace(/^[^\w]+/, ''))}" data-mission-step="${index}"></button>`).join('');
 }
 
 function renderTranslationLayer() {
@@ -43,26 +114,37 @@ function renderTranslationLayer() {
     if (panel) panel.remove();
     return;
   }
+  const steps = getMissionSteps(data);
+  if (missionStepIndex >= steps.length) missionStepIndex = 0;
+  const current = steps[missionStepIndex];
   if (!panel) {
     panel = document.createElement('section');
     panel.id = 'translationLayer';
-    panel.className = 'translationLayer';
+    panel.className = 'translationLayer missionFlow';
     activityText.insertAdjacentElement('afterend', panel);
   }
+  panel.className = 'translationLayer missionFlow';
   panel.innerHTML = `
-    <div class="eyebrow">Why this challenge matters</div>
-    <h3>Mission: ${esc(data.mission)}</h3>
-    <div class="translationGrid">
-      <div class="translationBlock full"><h4>🌟 Why this matters</h4><p>${esc(data.whyThisMatters)}</p></div>
-      <div class="translationBlock full"><h4>🌎 Where this shows up</h4><p>${esc(data.realWorldConnection)}</p></div>
-      <div class="translationBlock full"><h4>🏅 You are practicing</h4><div class="skillChips">${data.skillsPracticed.map(skill => `<span class="skillChip">${skill.emoji} ${esc(skill.badge)} · ${esc(skill.behavior)}</span>`).join('')}</div></div>
-      <div class="translationBlock"><h4>🧠 Before you start</h4><p>${esc(data.beforeYouStart)}</p></div>
-      <div class="translationBlock"><h4>👀 What to notice</h4><p>${esc(data.whatToNotice)}</p></div>
-      <div class="translationBlock"><h4>📌 Proof you made</h4><p>${esc(data.proofYouMade)}</p></div>
-      <div class="translationBlock"><h4>🛟 If you get stuck</h4><p>${esc(data.stuckHelp)}</p></div>
-      <div class="translationBlock full"><h4>🚀 Level-up option</h4><p>${esc(data.levelUp)}</p></div>
+    <div class="missionTopline">
+      <div><div class="eyebrow">Focused mission flow</div><h3>${current.title}</h3></div>
+      <span class="missionCounter">${current.eyebrow}</span>
+    </div>
+    <article class="missionCard" aria-live="polite">${current.body}</article>
+    <div class="missionDots" aria-label="Mission steps">${renderMissionDots(steps)}</div>
+    <div class="missionControls">
+      <button class="soft" type="button" id="missionBack" ${missionStepIndex === 0 ? 'disabled' : ''}>Back</button>
+      <button class="soft" type="button" id="missionSkip">Skip to Try It</button>
+      <button class="primary" type="button" id="missionNext">${missionStepIndex === steps.length - 1 ? 'Ready to reflect' : 'Next'}</button>
     </div>
   `;
+  panel.querySelector('#missionBack')?.addEventListener('click', () => setMissionStep(missionStepIndex - 1));
+  panel.querySelector('#missionNext')?.addEventListener('click', () => {
+    if (missionStepIndex === steps.length - 1) jumpToMissionTarget('reflection');
+    else setMissionStep(missionStepIndex + 1);
+  });
+  panel.querySelector('#missionSkip')?.addEventListener('click', () => setMissionStep(4));
+  panel.querySelectorAll('[data-mission-step]').forEach(btn => btn.addEventListener('click', () => setMissionStep(Number(btn.dataset.missionStep))));
+  panel.querySelectorAll('[data-jump-target]').forEach(btn => btn.addEventListener('click', () => jumpToMissionTarget(btn.dataset.jumpTarget)));
 }
 
 function renderAdultGuide() {
@@ -97,6 +179,7 @@ function renderAdultGuide() {
 const originalRenderForTranslation = render;
 render = function renderWithTranslationLayer() {
   originalRenderForTranslation();
+  missionStepIndex = 0;
   renderTranslationLayer();
   renderAdultGuide();
 };
