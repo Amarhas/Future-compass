@@ -10,72 +10,83 @@
 <body>
   <header class="hero">
     <div>
-      <div class="eyebrow">Future Compass v0.5.1 data foundation</div>
+      <div class="eyebrow">Future Compass v0.5.2 app shell</div>
       <h1>Future Compass ✨</h1>
       <p>Try one small challenge, pick how you want to start, and grow badges through practice — not pressure.</p>
-      <div class="chips"><span>🎯 One clear next step</span><span>🧭 Start Here modules</span><span>👤 Local profiles</span><span>🏅 Badge paths</span></div>
+      <div class="chips"><span>🎯 Today first</span><span>🧭 Start Here modules</span><span>👤 Local profiles</span><span>🏅 Badge paths</span></div>
     </div>
-    <div class="actions">
-      <label for="profileSelect">Profile</label>
-      <select id="profileSelect" aria-label="Choose child profile"></select>
-      <button id="addProfileBtn" class="light" type="button">Add Profile</button>
-      <label for="theme">Theme</label>
-      <select id="theme"><option value="bright">Bright</option><option value="calm">Calm</option><option value="warm">Warm</option><option value="dark">Dark</option><option value="contrast">High Contrast</option></select>
+    <div class="actions heroActions">
       <button id="adultBtn" class="light" type="button">🔐 Grown-up Login</button>
-      <button id="exportBtn" class="light" type="button">Export Backup</button>
-      <button id="importBtn" class="light" type="button">Import Backup</button>
-      <input id="importFile" type="file" accept="application/json,.json" hidden />
-      <button id="resetBtn" class="danger" type="button">Reset Profile</button>
       <span id="lock" class="lock">🔒 Adult view locked</span>
     </div>
   </header>
 
+  <nav class="appTabs" aria-label="Future Compass views">
+    <button class="tabBtn active" data-view="today" type="button">🎯 Today</button>
+    <button class="tabBtn" data-view="badges" type="button">🏅 Badges</button>
+    <button class="tabBtn" data-view="report" type="button">📤 Report</button>
+    <button class="tabBtn" data-view="adult" type="button">🔐 Adult</button>
+    <button class="tabBtn" data-view="settings" type="button">⚙️ Settings</button>
+  </nav>
+
   <main class="app">
-    <section id="activity" class="card kid" aria-live="polite">
-      <div class="top"><div><div id="week" class="eyebrow">Week 1 of 12</div><h2 id="title"></h2></div><div id="emoji" class="emoji">🧱</div></div>
-      <div id="meta" class="pillRow"></div>
-      <p id="text" class="activityText"></p>
+    <section id="today" class="view todayView active" aria-label="Today view">
+      <section id="activity" class="card kid" aria-live="polite">
+        <div class="top"><div><div id="week" class="eyebrow">Week 1 of 12</div><h2 id="title"></h2></div><div id="emoji" class="emoji">🧱</div></div>
+        <div id="meta" class="pillRow"></div>
+        <p id="text" class="activityText"></p>
 
-      <section class="moduleStart" aria-label="Start Here module choices">
-        <div class="moduleHead"><div><div class="eyebrow">Start Here</div><h3>How do you want to begin?</h3><p class="small">Pick the entry point that helps today. This is not a learning-style label.</p></div></div>
-        <div class="moduleChoices" role="tablist" aria-label="Module entry choices">
-          <button class="moduleBtn active" data-mode="showMe" type="button">👀 Show Me</button>
-          <button class="moduleBtn" data-mode="tellMe" type="button">🎧 Tell Me</button>
-          <button class="moduleBtn" data-mode="tryIt" type="button">👐 Let Me Try</button>
-          <button class="moduleBtn" data-mode="talkMeThrough" type="button">💬 Talk Me Through</button>
-          <button class="moduleBtn" data-mode="surpriseMe" type="button">🎲 Surprise Me</button>
-        </div>
-        <div id="moduleContent" class="moduleContent"></div>
+        <section class="moduleStart" aria-label="Start Here module choices">
+          <div class="moduleHead"><div><div class="eyebrow">Start Here</div><h3>How do you want to begin?</h3><p class="small">Pick the entry point that helps today. This is not a learning-style label.</p></div></div>
+          <div class="moduleChoices" role="tablist" aria-label="Module entry choices">
+            <button class="moduleBtn active" data-mode="showMe" type="button">👀 Show Me</button>
+            <button class="moduleBtn" data-mode="tellMe" type="button">🎧 Tell Me</button>
+            <button class="moduleBtn" data-mode="tryIt" type="button">👐 Let Me Try</button>
+            <button class="moduleBtn" data-mode="talkMeThrough" type="button">💬 Talk Me Through</button>
+            <button class="moduleBtn" data-mode="surpriseMe" type="button">🎲 Surprise Me</button>
+          </div>
+          <div id="moduleContent" class="moduleContent"></div>
+        </section>
+
+        <h3 class="sectionTitle">Challenge steps</h3>
+        <ol id="steps" class="steps"></ol>
+        <div class="note">Tiny goal: try it for 15–25 minutes. You are collecting clues, not trying to be perfect.</div>
+        <section class="reflection">
+          <h3>After you try it</h3>
+          <div class="question" data-q="fun"><label>Was it fun?</label><div class="choices"><button class="choice" data-v="Fun">😄 Fun</button><button class="choice" data-v="Okay">😐 Okay</button><button class="choice" data-v="Boring">😫 Boring</button></div></div>
+          <div class="question" data-q="difficulty"><label>How hard was it?</label><div class="choices"><button class="choice" data-v="Easy">🟢 Easy</button><button class="choice" data-v="Medium">🟡 Medium</button><button class="choice" data-v="Hard">🔴 Hard</button></div></div>
+          <div class="question" data-q="again"><label>Would you try something like this again?</label><div class="choices"><button class="choice" data-v="Yes">✅ Yes</button><button class="choice" data-v="Maybe">🤔 Maybe</button><button class="choice" data-v="No">🚫 No</button></div></div>
+          <label for="favorite" class="textLabel">What part did you like most?</label>
+          <textarea id="favorite" placeholder="Example: testing it, helping someone, making it stronger..."></textarea>
+          <div class="saveRow"><button id="save" class="primary" type="button">Save This Week</button><div id="saved" class="success">Saved! Badge evidence updated. 🏅</div></div>
+        </section>
       </section>
 
-      <h3 class="sectionTitle">Challenge steps</h3>
-      <ol id="steps" class="steps"></ol>
-      <div class="note">Tiny goal: try it for 15–25 minutes. You are collecting clues, not trying to be perfect.</div>
-      <section class="reflection">
-        <h3>After you try it</h3>
-        <div class="question" data-q="fun"><label>Was it fun?</label><div class="choices"><button class="choice" data-v="Fun">😄 Fun</button><button class="choice" data-v="Okay">😐 Okay</button><button class="choice" data-v="Boring">😫 Boring</button></div></div>
-        <div class="question" data-q="difficulty"><label>How hard was it?</label><div class="choices"><button class="choice" data-v="Easy">🟢 Easy</button><button class="choice" data-v="Medium">🟡 Medium</button><button class="choice" data-v="Hard">🔴 Hard</button></div></div>
-        <div class="question" data-q="again"><label>Would you try something like this again?</label><div class="choices"><button class="choice" data-v="Yes">✅ Yes</button><button class="choice" data-v="Maybe">🤔 Maybe</button><button class="choice" data-v="No">🚫 No</button></div></div>
-        <label for="favorite" class="textLabel">What part did you like most?</label>
-        <textarea id="favorite" placeholder="Example: testing it, helping someone, making it stronger..."></textarea>
-        <div class="saveRow"><button id="save" class="primary" type="button">Save This Week</button><div id="saved" class="success">Saved! Badge evidence updated. 🏅</div></div>
-      </section>
+      <aside class="side">
+        <section class="card"><h3>Your Progress</h3><p id="profileSummary" class="small">Current profile: Explorer</p><div class="meter"><div id="fill"></div></div><p id="progress" class="small">0 of 12 activities saved</p><div class="two"><button id="prev" class="soft" type="button">Previous</button><button id="next" class="soft" type="button">Next</button></div></section>
+        <section class="card"><h3>Top Clue Badges</h3><p class="small">Badges show practice evidence. They are not fixed labels.</p><div id="miniBadges" class="miniGrid"></div><button id="badgeBtn" class="primary wide" type="button">Open Badge Center</button></section>
+        <section class="card"><h3>Quick Share</h3><p class="small">Report is human-readable. Backup is app data.</p><div class="two"><button id="reportBtn" class="soft" type="button">Report</button><button id="jsonBtn" class="soft" type="button">Backup</button></div></section>
+      </aside>
     </section>
 
-    <aside class="side">
-      <section class="card"><h3>Your Progress</h3><p id="profileSummary" class="small">Current profile: Explorer</p><div class="meter"><div id="fill"></div></div><p id="progress" class="small">0 of 12 activities saved</p><div class="two"><button id="prev" class="soft" type="button">Previous</button><button id="next" class="soft" type="button">Next</button></div></section>
-      <section class="card"><h3>Top Clue Badges</h3><p class="small">Badges show practice evidence. They are not fixed labels.</p><div id="miniBadges" class="miniGrid"></div><button id="badgeBtn" class="primary wide" type="button">Open Badge Center</button></section>
-      <section class="card"><h3>Quick Share</h3><p class="small">Report is human-readable. Backup is app data.</p><div class="two"><button id="reportBtn" class="soft" type="button">Report</button><button id="jsonBtn" class="soft" type="button">Backup</button></div></section>
-    </aside>
+    <section id="badges" class="card full view" aria-label="Badge Center view"><div class="panelHead"><div><div class="eyebrow">Learning Benchmarks</div><h2>Badge Center 🏅</h2><p class="small">Each badge grows through practice, reflection, and evidence over time.</p></div></div><div id="badgeGrid" class="pathGrid"></div></section>
 
-    <section id="badges" class="card full"><div class="panelHead"><div><div class="eyebrow">Learning Benchmarks</div><h2>Badge Center 🏅</h2><p class="small">Each badge grows through practice, reflection, and evidence over time.</p></div></div><div id="badgeGrid" class="pathGrid"></div></section>
+    <section id="report" class="card full view" aria-label="Report view"><div class="panelHead"><div><div class="eyebrow">Share Report</div><h2>Progress Summary 📤</h2><p id="reportGen" class="small"></p></div><div class="spark"><b id="reportSaved">0/12</b><span>activities saved</span></div></div><div id="reportStats" class="statGrid"></div><div class="reportGrid"><section><h3>Top Badges</h3><ul id="reportBadges"></ul></section><section><h3>Strong Patterns</h3><ul id="reportPatterns"></ul></section><section><h3>Suggested Next Challenges</h3><ul id="reportNext"></ul></section><section><h3>Activities Liked</h3><ul id="reportLiked"></ul></section></div><h3>Recent Evidence</h3><div id="reportHistory" class="stack"></div></section>
 
-    <section id="adult" class="card full" hidden><div class="panelHead"><div><div class="eyebrow">Grown-up View</div><h2>Adult Interpretation</h2><p class="small">Use this to choose better next experiences — not to lock the child into an identity.</p></div><button id="lockBtn" class="soft" type="button">Lock View</button></div><div id="adultStats" class="statGrid"></div><h3>Pattern Summary</h3><div id="patterns" class="stack"></div><h3>Saved Activity History</h3><div id="history" class="stack"></div></section>
+    <section id="adult" class="card full view" hidden aria-label="Grown-up view"><div class="panelHead"><div><div class="eyebrow">Grown-up View</div><h2>Adult Interpretation</h2><p class="small">Use this to choose better next experiences — not to lock the child into an identity.</p></div><button id="lockBtn" class="soft" type="button">Lock View</button></div><div id="adultStats" class="statGrid"></div><h3>Pattern Summary</h3><div id="patterns" class="stack"></div><h3>Saved Activity History</h3><div id="history" class="stack"></div></section>
 
-    <section id="report" class="card full" hidden><div class="panelHead"><div><div class="eyebrow">Share Report</div><h2>Progress Summary 📤</h2><p id="reportGen" class="small"></p></div><div class="spark"><b id="reportSaved">0/12</b><span>activities saved</span></div></div><div id="reportStats" class="statGrid"></div><div class="reportGrid"><section><h3>Top Badges</h3><ul id="reportBadges"></ul></section><section><h3>Strong Patterns</h3><ul id="reportPatterns"></ul></section><section><h3>Suggested Next Challenges</h3><ul id="reportNext"></ul></section><section><h3>Activities Liked</h3><ul id="reportLiked"></ul></section></div><h3>Recent Evidence</h3><div id="reportHistory" class="stack"></div></section>
+    <section id="settings" class="card full view" aria-label="Settings view">
+      <div class="panelHead"><div><div class="eyebrow">Settings</div><h2>Profiles & Backups ⚙️</h2><p class="small">Settings are separated from the child activity flow so Today stays focused.</p></div></div>
+      <div class="settingsGrid">
+        <section class="settingsBlock"><h3>Profile</h3><label for="profileSelect">Choose profile</label><select id="profileSelect" aria-label="Choose child profile"></select><button id="addProfileBtn" class="primary wide" type="button">Add Profile</button></section>
+        <section class="settingsBlock"><h3>Theme</h3><label for="theme">Choose theme</label><select id="theme"><option value="bright">Bright</option><option value="calm">Calm</option><option value="warm">Warm</option><option value="dark">Dark</option><option value="contrast">High Contrast</option></select></section>
+        <section class="settingsBlock"><h3>Backup</h3><p class="small">Backup is machine-readable app data. Report is human-readable progress.</p><button id="exportBtn" class="soft wide" type="button">Export Backup</button><button id="importBtn" class="soft wide" type="button">Import Backup</button><input id="importFile" type="file" accept="application/json,.json" hidden /></section>
+        <section class="settingsBlock"><h3>Reset</h3><p class="small">This resets only the active profile on this device.</p><button id="resetBtn" class="danger wide" type="button">Reset Profile</button></section>
+      </div>
+    </section>
   </main>
 
-  <nav class="bottom"><button data-target="activity" type="button">🎯<span>Activity</span></button><button data-target="badges" type="button">🏅<span>Badges</span></button><button id="mobReport" type="button">📤<span>Report</span></button><button id="mobAdult" type="button">🔐<span>Adult</span></button></nav>
+  <nav class="bottom" aria-label="Mobile Future Compass views"><button class="active" data-view="today" type="button">🎯<span>Today</span></button><button data-view="badges" type="button">🏅<span>Badges</span></button><button id="mobReport" data-view="report" type="button">📤<span>Report</span></button><button id="mobAdult" data-view="adult" type="button">🔐<span>Adult</span></button><button data-view="settings" type="button">⚙️<span>Settings</span></button></nav>
 
   <div id="modal" class="modalBg" hidden><section class="modal"><h2>🔐 Grown-up Gate</h2><p class="small">This separates child activities from adult interpretation. It is not real authentication.</p><p class="small"><strong>Default:</strong> grownup / compass</p><label for="user">Username</label><input id="user" value="grownup" /><label for="pass">Password</label><input id="pass" type="password" placeholder="compass" /><button id="login" class="primary wide" type="button">Open Grown-up View</button><button id="cancel" class="soft wide" type="button">Cancel</button><div id="err" class="error" hidden>Try username <strong>grownup</strong> and password <strong>compass</strong>.</div></section></div>
 
