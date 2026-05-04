@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Future Compass icon">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6477ff"/>
+      <stop offset="0.55" stop-color="#7b4dff"/>
+      <stop offset="1" stop-color="#32c8c0"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#g)"/>
+  <circle cx="256" cy="256" r="146" fill="rgba(255,255,255,.18)" stroke="white" stroke-width="22"/>
+  <path d="M288 118 235 279 352 235 224 394 277 233 160 277z" fill="white"/>
+  <circle cx="256" cy="256" r="19" fill="#243042"/>
+</svg>
