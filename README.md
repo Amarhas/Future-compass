@@ -4,9 +4,9 @@ Future Compass is a local-first youth discovery app designed to help young peopl
 
 ## Current checkpoint
 
-**v0.5 Module Foundation**
+**v0.5.1 Profile and Schema Foundation**
 
-This checkpoint preserves the colorful child-facing app experience and adds a `Start Here` module layer so children can choose how to begin an activity.
+This checkpoint preserves the colorful child-facing app experience, keeps the `Start Here` module layer, and adds a durable local data foundation with profiles and schema versioning.
 
 The current module entry paths are:
 
@@ -15,6 +15,15 @@ The current module entry paths are:
 - 👐 Let Me Try
 - 💬 Talk Me Through
 - 🎲 Surprise Me
+
+The current data foundation includes:
+
+- local child profiles
+- `schemaVersion: 1`
+- profile-specific progress
+- badge evidence records
+- backup export/import
+- migration support for older local progress
 
 ## Core principle
 
@@ -64,5 +73,5 @@ app/modules.js
 - v0.4.1 — restored colorful V2 visual style
 - v0.4.2 — local-safe self-contained build
 - v0.5 — module foundation / Start Here entry paths
-- v0.5.1 — planned profile and schema foundation
+- v0.5.1 — profile and schema foundation
 - v0.6 — planned PWA build
