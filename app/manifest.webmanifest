@@ -1,0 +1,25 @@
+{
+  "name": "Future Compass",
+  "short_name": "Future Compass",
+  "description": "A local-first youth discovery app for activities, reflection, and evidence-based badges.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f7f7ff",
+  "theme_color": "#5b6cff",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "icons/icon-192.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
