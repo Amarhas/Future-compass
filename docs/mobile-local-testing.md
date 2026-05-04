@@ -1,31 +1,20 @@
-# Mobile and Local Testing
+# Hosted and Mobile Testing
 
 Use this checklist before treating a Future Compass checkpoint as stable.
 
-## Local browser test
+## Official test path
 
-From the repository or downloaded folder, open:
+Future Compass should be tested through the hosted GitHub Pages URL, not by opening files directly through `file://`.
 
-```text
-app/index.html
-```
+Local-file testing can be useful for quick developer checks, but it is not the release acceptance path.
 
-The file must remain in the same folder as:
+## Hosted test checklist
 
-```text
-app/styles.css
-app/modules.css
-app/app.js
-app/modules.js
-```
-
-If the page appears plain white or unstyled, the CSS files did not load.
-
-## Mobile test checklist
-
-Test on a phone-sized screen.
+Test on a phone-sized screen through the GitHub Pages URL.
 
 - Header gradient appears
+- Profile selector appears
+- Add Profile works
 - Activity card has emoji and colorful pills
 - Start Here module appears
 - Module buttons work:
@@ -35,13 +24,30 @@ Test on a phone-sized screen.
   - Talk Me Through
   - Surprise Me
 - Previous / Next changes activities
-- Save This Week stores progress
+- Save This Week stores progress for the active profile
 - Badge Center updates after saving progress
+- Switching profiles shows different progress
 - Theme selector works
 - Bottom navigation works
 - Grown-up gate opens and locks
-- Report panel opens
-- JSON export downloads or shares
+- Report panel opens and reflects the active profile
+- Export Backup downloads JSON
+- Import Backup restores schema v1 data
+
+## Profile/schema test checklist
+
+1. Open the hosted app URL.
+2. Confirm the default profile is created automatically.
+3. Save one activity under the default profile.
+4. Add a second profile.
+5. Confirm the second profile has no saved progress.
+6. Save a different activity under the second profile.
+7. Switch back to the first profile.
+8. Confirm the first profile still has its original progress.
+9. Export Backup.
+10. Confirm the JSON includes `schemaVersion: 1` and `profiles`.
+11. Import the backup.
+12. Confirm profiles and progress are restored.
 
 ## Adult gate
 
@@ -54,17 +60,20 @@ Password: compass
 
 This is only separation of concerns, not secure authentication.
 
-## Recommended testing path
+## Local development fallback
 
-1. Open `app/index.html` on desktop.
-2. Use browser responsive/mobile view.
-3. Save one activity.
-4. Switch to the Badge Center.
-5. Test the adult gate.
-6. Export JSON.
-7. Open on phone.
-8. Repeat the same checks.
+For local development checks, serve the repository over HTTP:
+
+```bash
+python -m http.server 8000
+```
+
+Then open:
+
+```text
+http://localhost:8000/app/
+```
 
 ## Known limitation
 
-Opening a multi-file app from a mobile file picker may fail if the browser blocks sibling local files. For this reason, later versions should move toward a PWA or a bundled app wrapper.
+Opening a multi-file app from a mobile file picker may fail if the browser blocks sibling local files. This is why the official test path is the hosted GitHub Pages URL.
