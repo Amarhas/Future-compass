@@ -53,5 +53,18 @@ function installTrustBoundaryActions() {
   if (jsonBtn) jsonBtn.onclick = guardedExport;
 }
 
+function installLegalFooterLinks() {
+  if (document.getElementById('legalFooterLinks')) return;
+  const footer = document.createElement('footer');
+  footer.id = 'legalFooterLinks';
+  footer.style.cssText = 'width:min(1160px,calc(100% - 24px));margin:24px auto 110px;padding:18px;text-align:center;color:var(--muted);font-size:.92rem;';
+  footer.innerHTML = `
+    <p style="margin:0 0 8px;">Future Compass is local-first. Progress is saved on this device/browser unless an adult exports or shares it.</p>
+    <p style="margin:0;"><a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms & Disclaimer</a></p>
+  `;
+  document.body.appendChild(footer);
+}
+
 installTrustBoundaryHints();
 installTrustBoundaryActions();
+installLegalFooterLinks();
