@@ -4,26 +4,22 @@ Future Compass is a local-first youth discovery app designed to help young peopl
 
 ## Current checkpoint
 
-**v0.5.1 Data Foundation**
+**Trust Boundary Foundation in progress**
 
-This checkpoint preserves the colorful child-facing app experience, keeps the `Start Here` module layer, and adds durable local data foundations.
+This checkpoint preserves the colorful child-facing app experience and adds explicit trust/compliance guardrails before the activity library grows.
 
-The current module entry paths are:
+The current app includes:
 
-- 👀 Show Me
-- 🎧 Tell Me
-- 👐 Let Me Try
-- 💬 Talk Me Through
-- 🎲 Surprise Me
-
-The current data foundation includes:
-
+- hosted GitHub Pages delivery
+- mobile-first app shell
 - local child profiles
 - `schemaVersion: 1`
 - profile-specific progress
 - badge evidence records
 - backup export/import
-- migration support for older local progress
+- Paper Tower focused mission flow
+- grown-up coaching notes
+- trust boundary warnings for profiles, reflections, and backups
 
 ## Core principle
 
@@ -36,6 +32,34 @@ A badge should mean:
 A badge should not mean:
 
 > This is what I am forever.
+
+## Trust principle
+
+Future Compass follows a trust-by-minimization rule:
+
+> The safest sensitive data is the data Future Compass never collects.
+
+Product rule:
+
+```text
+Sell to adults.
+Design for kids.
+Avoid collecting child data.
+Keep parents/customers in control.
+```
+
+The current app is local-first. Progress is stored in the user's browser/device unless the parent/customer chooses to export or share it.
+
+Future Compass should avoid:
+
+- child accounts by default
+- cloud child profiles
+- behavioral tracking
+- ads
+- social posting
+- public child profiles
+- direct payment card handling
+- unnecessary collection of personal/private information
 
 ## Adult gate
 
@@ -76,4 +100,6 @@ http://localhost:8000/app/
 - v0.4.2 — local-safe self-contained build
 - v0.5 — module foundation / Start Here entry paths
 - v0.5.1 — data foundation / profiles and schemaVersion
+- v0.5.2 — app shell and focused mission pilot
+- v0.5.3 — trust boundary foundation
 - v0.6 — planned PWA foundation
