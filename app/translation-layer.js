@@ -12,6 +12,10 @@ function getResearchLabel(tag) {
 
 function getMissionSteps(data) {
   if (!data) return [];
+  const startNudge = data.startNudge || 'Pick one guess before you begin. You are not trying to be right. You are making a prediction to test.';
+  const tryItAction = data.tryItAction || 'Try the activity, check what happened, change one thing, and try again.';
+  const tryNudge = data.tryNudge || 'Start with a quick first version. It is okay if it is rough because rough attempts give you useful clues.';
+  const noticeNudge = data.noticeNudge || 'Look for the first clue that tells you what worked, what changed, or what got in the way.';
   return [
     {
       key: 'mission',
@@ -35,19 +39,19 @@ function getMissionSteps(data) {
       key: 'start',
       eyebrow: 'Step 4 of 7',
       title: '🧭 Before you start',
-      body: `<p>${esc(data.beforeYouStart)}</p><p class="missionHint">Starter nudge: Pick one guess before you build. You are not trying to be right. You are making a prediction to test.</p>`
+      body: `<p>${esc(data.beforeYouStart)}</p><p class="missionHint">Starter nudge: ${esc(startNudge)}</p>`
     },
     {
       key: 'try',
       eyebrow: 'Step 5 of 7',
       title: '👐 Try it',
-      body: `<p>Build, test, change one thing, and test again.</p><p class="missionHint">Starter nudge: Build a quick first version. A wobbly tower is useful because it gives you clues about what to change.</p><button class="soft wide missionJump" type="button" data-jump-target="steps">Show challenge steps</button>`
+      body: `<p>${esc(tryItAction)}</p><p class="missionHint">Starter nudge: ${esc(tryNudge)}</p><button class="soft wide missionJump" type="button" data-jump-target="steps">Show challenge steps</button>`
     },
     {
       key: 'notice',
       eyebrow: 'Step 6 of 7',
       title: '👀 Notice the clues',
-      body: `<p>${esc(data.whatToNotice)}</p><p class="missionHint">Starter nudge: Look for where the tower failed first. Did the bottom slide, the middle bend, or the top tip over?</p><div class="missionProof"><strong>Proof you made:</strong><br>${esc(data.proofYouMade)}</div><div class="missionProof"><strong>If you get stuck:</strong><br>${esc(data.stuckHelp)}</div>`
+      body: `<p>${esc(data.whatToNotice)}</p><p class="missionHint">Starter nudge: ${esc(noticeNudge)}</p><div class="missionProof"><strong>Proof you made:</strong><br>${esc(data.proofYouMade)}</div><div class="missionProof"><strong>If you get stuck:</strong><br>${esc(data.stuckHelp)}</div>`
     },
     {
       key: 'levelUp',
