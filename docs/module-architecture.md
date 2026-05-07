@@ -8,6 +8,8 @@ Future Compass should grow by adding and updating modules, not by rewriting the 
 Core app = stable engine
 Activities = content modules
 Translation layer = evidence scaffold renderer
+Start Here on-ramps = activity-specific entry points
+Show Me images = visual examples, not decoration
 Adult notes = interpretation layer
 Badges = skill-evidence system
 Reports/guides = monetizable outputs
@@ -39,6 +41,13 @@ Use these files as the content source of truth:
 | `app/data/activity-scaffolds.js` | Focused mission flow content and grown-up coaching notes |
 | `app/data/research-anchors.js` | Plain-language research anchor registry |
 
+Future source-of-truth modules should include:
+
+| Module | Purpose |
+|---|---|
+| `app/data/module-onramps.js` | Activity-specific Start Here content for Show Me, Tell Me, Let Me Try, Talk Me Through, and Surprise Me |
+| `app/assets/onramps/` | Local/static visual examples for Show Me |
+
 ## Active engine
 
 The active app engine is:
@@ -55,6 +64,31 @@ app/app.js
 
 Do not add new activities or badge content to `app.js`.
 
+## Visual on-ramp rule
+
+Show Me should become visual-first, not text-first.
+
+Images should follow:
+
+```text
+docs/visual-style-guide.md
+```
+
+The v1 image style is:
+
+```text
+simple, bright, child-friendly digital illustration
+```
+
+Show Me images should:
+
+- reduce uncertainty
+- show what the activity might look like in action
+- be readable on a phone
+- include alt text and a short caption
+- be local/static assets
+- avoid photos of real children or identifying details
+
 ## Hot-swappable opportunities
 
 Future modules may include:
@@ -62,6 +96,8 @@ Future modules may include:
 - activity packs
 - badge models
 - research anchors
+- activity-specific Start Here on-ramps
+- Show Me visual assets
 - adult interpretation templates
 - report templates
 - export types
@@ -98,6 +134,7 @@ Avoid:
 - mixing research copy directly into rendering logic
 - adding payment/account/cloud logic before the data boundary is documented
 - making the child-facing UI feel plain, technical, or adult-facing
+- adding visual assets that are decorative but do not help the child understand the activity
 
 ## Test rule
 
@@ -110,3 +147,4 @@ After content architecture changes, always test:
 5. Adult view still works.
 6. Trust guardrails still work.
 7. Privacy and Terms links still work.
+8. Visual additions still feel colorful, mobile-first, and not worksheet-like.
