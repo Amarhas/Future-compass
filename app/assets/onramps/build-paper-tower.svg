@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" role="img" aria-labelledby="title desc">
+  <title id="title">Paper tower with a wide base</title>
+  <desc id="desc">A simple colorful illustration of a paper tower with a wide base standing on a table.</desc>
+  <rect width="640" height="420" rx="36" fill="#f7f7ff"/>
+  <circle cx="112" cy="76" r="44" fill="#fff5d6"/>
+  <circle cx="540" cy="92" r="58" fill="#d9fbf7"/>
+  <rect x="92" y="322" width="456" height="34" rx="17" fill="#e9e7ff"/>
+  <rect x="140" y="356" width="360" height="18" rx="9" fill="#d5d1ff"/>
+  <path d="M188 312 L282 112 L372 312 Z" fill="#ffffff" stroke="#5b6cff" stroke-width="10" stroke-linejoin="round"/>
+  <path d="M282 112 L452 312 H372 Z" fill="#eef6ff" stroke="#7b4dff" stroke-width="10" stroke-linejoin="round"/>
+  <path d="M188 312 H452" stroke="#32c8c0" stroke-width="14" stroke-linecap="round"/>
+  <path d="M235 214 H403" stroke="#ffd166" stroke-width="10" stroke-linecap="round"/>
+  <path d="M220 262 H424" stroke="#32c8c0" stroke-width="10" stroke-linecap="round"/>
+  <path d="M282 112 V312" stroke="#5b6cff" stroke-width="8" stroke-linecap="round" opacity=".72"/>
+  <path d="M204 312 C222 288 248 276 282 276 C318 276 350 290 372 312" fill="none" stroke="#7b4dff" stroke-width="8" stroke-linecap="round" opacity=".55"/>
+  <rect x="422" y="208" width="78" height="42" rx="10" fill="#fff" stroke="#32c8c0" stroke-width="6" transform="rotate(8 461 229)"/>
+  <path d="M437 225 H482" stroke="#ffd166" stroke-width="6" stroke-linecap="round"/>
+  <path d="M104 260 C138 244 164 248 184 272" fill="none" stroke="#ff8a5c" stroke-width="9" stroke-linecap="round"/>
+  <path d="M504 264 C530 244 556 244 584 268" fill="none" stroke="#5b6cff" stroke-width="9" stroke-linecap="round"/>
+  <text x="320" y="394" text-anchor="middle" font-family="system-ui, sans-serif" font-size="22" font-weight="800" fill="#243042">Wide base = steadier tower</text>
+</svg>

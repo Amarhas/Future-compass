@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" role="img" aria-labelledby="title desc">
+  <title id="title">Spend Save Give money choice</title>
+  <desc id="desc">A bright illustration of three jars labeled Spend, Save, and Give with pretend money split between them.</desc>
+  <rect width="640" height="420" rx="36" fill="#f7f7ff"/>
+  <circle cx="100" cy="84" r="48" fill="#fff5d6"/>
+  <circle cx="548" cy="78" r="54" fill="#d9fbf7"/>
+  <rect x="70" y="332" width="500" height="28" rx="14" fill="#e9e7ff"/>
+  <g transform="translate(70 110)">
+    <rect x="0" y="46" width="136" height="176" rx="28" fill="#fff" stroke="#5b6cff" stroke-width="8"/>
+    <rect x="28" y="14" width="80" height="48" rx="18" fill="#d5d1ff" stroke="#5b6cff" stroke-width="7"/>
+    <rect x="26" y="94" width="84" height="34" rx="10" fill="#fff5d6" stroke="#ffd166" stroke-width="5"/>
+    <text x="68" y="118" text-anchor="middle" font-family="system-ui, sans-serif" font-size="20" font-weight="900" fill="#243042">SPEND</text>
+    <path d="M36 162 H100" stroke="#32c8c0" stroke-width="12" stroke-linecap="round"/>
+    <path d="M48 188 H88" stroke="#7b4dff" stroke-width="10" stroke-linecap="round"/>
+  </g>
+  <g transform="translate(252 88)">
+    <rect x="0" y="68" width="136" height="198" rx="28" fill="#fff" stroke="#32c8c0" stroke-width="8"/>
+    <rect x="28" y="36" width="80" height="48" rx="18" fill="#d9fbf7" stroke="#32c8c0" stroke-width="7"/>
+    <rect x="30" y="122" width="76" height="34" rx="10" fill="#e9e7ff" stroke="#7b4dff" stroke-width="5"/>
+    <text x="68" y="146" text-anchor="middle" font-family="system-ui, sans-serif" font-size="20" font-weight="900" fill="#243042">SAVE</text>
+    <path d="M34 188 H102" stroke="#5b6cff" stroke-width="12" stroke-linecap="round"/>
+    <path d="M42 216 H96" stroke="#ffd166" stroke-width="10" stroke-linecap="round"/>
+    <path d="M52 238 H84" stroke="#32c8c0" stroke-width="8" stroke-linecap="round"/>
+  </g>
+  <g transform="translate(434 118)">
+    <rect x="0" y="38" width="136" height="168" rx="28" fill="#fff" stroke="#7b4dff" stroke-width="8"/>
+    <rect x="28" y="6" width="80" height="48" rx="18" fill="#eee8ff" stroke="#7b4dff" stroke-width="7"/>
+    <rect x="28" y="86" width="80" height="34" rx="10" fill="#d9fbf7" stroke="#32c8c0" stroke-width="5"/>
+    <text x="68" y="110" text-anchor="middle" font-family="system-ui, sans-serif" font-size="20" font-weight="900" fill="#243042">GIVE</text>
+    <path d="M38 150 H98" stroke="#ff8a5c" stroke-width="12" stroke-linecap="round"/>
+    <path d="M50 176 H86" stroke="#5b6cff" stroke-width="10" stroke-linecap="round"/>
+  </g>
+  <text x="320" y="394" text-anchor="middle" font-family="system-ui, sans-serif" font-size="22" font-weight="800" fill="#243042">One $20 choice, three possible directions</text>
+</svg>

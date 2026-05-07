@@ -1,34 +1,29 @@
-const moduleText = {
+const fallbackModuleText = {
   showMe: {
-    label: '👀 Show Me',
     title: 'A quick picture in your mind',
     build(activity) {
       return `Imagine the finished challenge first. For <strong>${esc(activity.title)}</strong>, look for shapes, patterns, or examples that make the task easier to understand before you begin.`;
     }
   },
   tellMe: {
-    label: '🎧 Tell Me',
     title: 'A short explanation',
     build(activity) {
       return `In this challenge, you are practicing <strong>${esc(activity.badges.join(', '))}</strong>. The goal is not to get the perfect answer. The goal is to try, notice what happened, and learn one clue about yourself.`;
     }
   },
   tryIt: {
-    label: '👐 Let Me Try',
     title: 'Start with your hands',
     build(activity) {
       return `Skip the long explanation. Gather what you need: <strong>${esc(activity.materials)}</strong>. Start the first step now and adjust as you go.`;
     }
   },
   talkMeThrough: {
-    label: '💬 Talk Me Through',
     title: 'Use guiding questions',
-    build(activity) {
+    build() {
       return `<ul><li>What is the first tiny thing you can do?</li><li>What might be confusing or hard?</li><li>What could you change if your first idea does not work?</li><li>What would you tell someone else about this challenge?</li></ul>`;
     }
   },
   surpriseMe: {
-    label: '🎲 Surprise Me',
     title: 'Try a twist',
     build(activity) {
       const twists = {
@@ -52,16 +47,65 @@ const moduleText = {
 
 let activeModuleMode = 'showMe';
 
+function getActivityOnramp(activity, mode) {
+  return moduleOnramps?.[activity.id]?.[mode] || null;
+}
+
+function renderOnrampImage(onramp) {
+  if (!onramp.image) return '';
+  return `
+    <figure class="onrampFigure">
+      <img src="${esc(onramp.image)}" alt="${esc(onramp.alt || '')}" loading="lazy" />
+      ${onramp.caption ? `<figcaption>${esc(onramp.caption)}</figcaption>` : ''}
+    </figure>
+  `;
+}
+
+function renderOnrampContent(activity, mode) {
+  const onramp = getActivityOnramp(activity, mode);
+  if (!onramp) {
+    const fallback = fallbackModuleText[mode] || fallbackModuleText.showMe;
+    return `<strong>${fallback.title}</strong><div>${fallback.build(activity)}</div>`;
+  }
+
+  if (mode === 'showMe') {
+    return `
+      <strong>${esc(onramp.title)}</strong>
+      ${onramp.leadIn ? `<p>${esc(onramp.leadIn)}</p>` : ''}
+      ${renderOnrampImage(onramp)}
+    `;
+  }
+
+  if (mode === 'talkMeThrough' && Array.isArray(onramp.steps)) {
+    return `
+      <strong>${esc(onramp.title)}</strong>
+      <ul>${onramp.steps.map(step => `<li>${esc(step)}</li>`).join('')}</ul>
+    `;
+  }
+
+  if (mode === 'surpriseMe') {
+    return `
+      <strong>${esc(onramp.title)}</strong>
+      ${onramp.leadIn ? `<p>${esc(onramp.leadIn)}</p>` : ''}
+      <p>${esc(onramp.body || '')}</p>
+    `;
+  }
+
+  return `
+    <strong>${esc(onramp.title)}</strong>
+    <p>${esc(onramp.body || '')}</p>
+  `;
+}
+
 function renderModuleContent(mode = activeModuleMode) {
   const activity = activities[week];
-  const module = moduleText[mode] || moduleText.showMe;
   activeModuleMode = mode;
   document.querySelectorAll('.moduleBtn').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.mode === mode);
   });
   const content = document.getElementById('moduleContent');
   if (!content || !activity) return;
-  content.innerHTML = `<strong>${module.title}</strong><div>${module.build(activity)}</div>`;
+  content.innerHTML = renderOnrampContent(activity, mode);
 }
 
 function bindModuleButtons() {
